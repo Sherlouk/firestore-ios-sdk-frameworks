@@ -29,6 +29,7 @@ let package = Package(
                 .target(name: "FirebaseCoreDiagnostics"),
                 .target(name: "FirebaseInstallations"),
                 .target(name: "GoogleAppMeasurement"),
+                .target(name: "GoogleDataTransport"),
                 .target(name: "GoogleUtilities"),
                 .target(name: "nanopb"),
                 .target(name: "PromisesObjC"),
@@ -68,3 +69,4 @@ let package = Package(
                       path: "FirebaseCore/PromisesObjC.xcframework"),
     ]
 )
+
