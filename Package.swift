@@ -9,10 +9,7 @@ let packageName = "Firebase"
 let package = Package(
     name: packageName,
     platforms: [
-        .iOS(.v10), 
-        .macOS(.v10_12), 
-        .tvOS(.v10), 
-        .watchOS(.v6)
+        .iOS(.v10),
     ],
     products: [
         .library(name: packageName, targets: [ packageName ]),
@@ -29,8 +26,12 @@ let package = Package(
                 .target(name: "leveldb-library"),
                 
                 .target(name: "FirebaseCore"),
+                .target(name: "FirebaseCoreDiagnostics"),
+                .target(name: "FirebaseInstallations"),
+                .target(name: "GoogleAppMeasurement"),
                 .target(name: "GoogleUtilities"),
                 .target(name: "nanopb"),
+                .target(name: "PromisesObjC"),
             ],
             path: "Sources",
             sources: ["Exports.swift"]
@@ -51,9 +52,19 @@ let package = Package(
         
         .binaryTarget(name: "FirebaseCore",
                       path: "FirebaseCore/FirebaseCore.xcframework"),
+        .binaryTarget(name: "FirebaseCoreDiagnostics",
+                      path: "FirebaseCore/FirebaseCoreDiagnostics.xcframework"),
+        .binaryTarget(name: "FirebaseInstallations",
+                      path: "FirebaseCore/FirebaseInstallations.xcframework"),
+        .binaryTarget(name: "GoogleAppMeasurement",
+                      path: "FirebaseCore/GoogleAppMeasurement.xcframework"),
+        .binaryTarget(name: "GoogleDataTransport",
+                      path: "FirebaseCore/GoogleDataTransport.xcframework"),
         .binaryTarget(name: "GoogleUtilities",
                       path: "FirebaseCore/GoogleUtilities.xcframework"),
         .binaryTarget(name: "nanopb",
                       path: "FirebaseCore/nanopb.xcframework"),
+        .binaryTarget(name: "PromisesObjC",
+                      path: "FirebaseCore/PromisesObjC.xcframework"),
     ]
 )
