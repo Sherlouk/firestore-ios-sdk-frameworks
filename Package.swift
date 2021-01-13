@@ -37,3 +37,4 @@ let package = Package(
         )
     ] + imports.map { .binaryTarget(name: $0, path: "FirebaseFirestore/\($0).xcframework") }
 )
+
