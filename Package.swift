@@ -6,17 +6,6 @@ import Foundation
 
 let packageName = "Firebase"
 
-// Create a file URL pointing to the Exports swift file stored in Sources
-let exportsURL = URL(fileURLWithPath: #filePath)
-    .deletingLastPathComponent() // Package.swift -> Parent Directory
-    .appendingPathComponent("Sources/Exports.swift")
-
-// Extract each of the individual exported imports.
-let imports = ((try? String(contentsOf: exportsURL)) ?? "")
-    .components(separatedBy: .newlines) // Convert file into lines
-    .filter { $0.starts(with: "@_exported import") } // Remove comments and empty lines
-    .compactMap { $0.components(separatedBy: "import ").last?.trimmingCharacters(in: .whitespaces) }
-
 let package = Package(
     name: packageName,
     platforms: [
@@ -31,10 +20,36 @@ let package = Package(
     targets: [
         .target(
             name: packageName,
-            dependencies: imports.map { .target(name: $0) },
+            dependencies: [
+                .target(name: "abseil"),
+                .target(name: "BoringSSL-GRPC"),
+                .target(name: "FirebaseCore"),
+                .target(name: "FirebaseFirestore"),
+                .target(name: "GoogleUtilities"),
+                .target(name: "gRPC-C++"),
+                .target(name: "gRPC-Core"),
+                .target(name: "leveldb-library"),
+            ],
             path: "Sources",
             sources: ["Exports.swift"]
-        )
-    ] + imports.map { .binaryTarget(name: $0, path: "FirebaseFirestore/\($0).xcframework") }
+        ),
+        
+        .binaryTarget(name: "abseil",
+                      path: "FirebaseFirestore/abseil.xcframework"),
+        .binaryTarget(name: "BoringSSL-GRPC",
+                      path: "FirebaseFirestore/BoringSSL-GRPC.xcframework"),
+        .binaryTarget(name: "FirebaseCore",
+                      path: "FirebaseFirestore/FirebaseCore.xcframework"),
+        .binaryTarget(name: "FirebaseFirestore",
+                      path: "FirebaseFirestore/FirebaseFirestore.xcframework"),
+        .binaryTarget(name: "GoogleUtilities",
+                      path: "FirebaseFirestore/GoogleUtilities.xcframework"),
+        .binaryTarget(name: "gRPC-C++",
+                      path: "FirebaseFirestore/gRPC-C++.xcframework"),
+        .binaryTarget(name: "gRPC-Core",
+                      path: "FirebaseFirestore/gRPC-Core.xcframework"),
+        .binaryTarget(name: "leveldb-library",
+                      path: "FirebaseFirestore/leveldb-library.xcframework"),
+    ]
 )
 
