@@ -23,12 +23,14 @@ let package = Package(
             dependencies: [
                 .target(name: "abseil"),
                 .target(name: "BoringSSL-GRPC"),
-                .target(name: "FirebaseCore"),
                 .target(name: "FirebaseFirestore"),
-                .target(name: "GoogleUtilities"),
                 .target(name: "gRPC-C++"),
                 .target(name: "gRPC-Core"),
                 .target(name: "leveldb-library"),
+                
+                .target(name: "FirebaseCore"),
+                .target(name: "GoogleUtilities"),
+                .target(name: "nanopb"),
             ],
             path: "Sources",
             sources: ["Exports.swift"]
@@ -38,18 +40,20 @@ let package = Package(
                       path: "FirebaseFirestore/abseil.xcframework"),
         .binaryTarget(name: "BoringSSL-GRPC",
                       path: "FirebaseFirestore/BoringSSL-GRPC.xcframework"),
-        .binaryTarget(name: "FirebaseCore",
-                      path: "FirebaseFirestore/FirebaseCore.xcframework"),
         .binaryTarget(name: "FirebaseFirestore",
                       path: "FirebaseFirestore/FirebaseFirestore.xcframework"),
-        .binaryTarget(name: "GoogleUtilities",
-                      path: "FirebaseFirestore/GoogleUtilities.xcframework"),
         .binaryTarget(name: "gRPC-C++",
                       path: "FirebaseFirestore/gRPC-C++.xcframework"),
         .binaryTarget(name: "gRPC-Core",
                       path: "FirebaseFirestore/gRPC-Core.xcframework"),
         .binaryTarget(name: "leveldb-library",
                       path: "FirebaseFirestore/leveldb-library.xcframework"),
+        
+        .binaryTarget(name: "FirebaseCore",
+                      path: "FirebaseCore/FirebaseCore.xcframework"),
+        .binaryTarget(name: "GoogleUtilities",
+                      path: "FirebaseCore/GoogleUtilities.xcframework"),
+        .binaryTarget(name: "nanopb",
+                      path: "FirebaseCore/nanopb.xcframework"),
     ]
 )
-
